@@ -8,6 +8,7 @@ defmodule Phxblog.User do
     field :password, :string, virtual: true
     field :password_confirmation, :string, virtual: true
     field :password_digest, :string
+    has_many :posts, Phxblog.Post
 
     timestamps()
   end

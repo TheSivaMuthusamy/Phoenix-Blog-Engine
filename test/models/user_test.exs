@@ -2,12 +2,22 @@ defmodule Phxblog.UserTest do
   use Phxblog.ModelCase
 
   alias Phxblog.User
+  alias Phxblog.TestHelper
+
+  setup do
+    {:ok, role}  = TestHelper.create_role(%{name: "user", admin: false})
+    {:ok, role: role}
+  end
 
   @valid_attrs %{email: "some email", password: "some password_digest", password_confirmation: "some password_digest", username: "some username"}
   @invalid_attrs %{}
 
-  test "changeset with valid attributes" do
-    changeset = User.changeset(%User{}, @valid_attrs)
+  defp valid_attrs(role) do
+    Map.put(@valid_attrs, :role_id, role.id)
+  end
+
+  test "changeset with valid attributes", %{role: role} do
+    changeset = User.changeset(%User{}, valid_attrs(role))
     assert changeset.valid?
   end
 

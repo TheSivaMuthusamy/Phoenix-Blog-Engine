@@ -90,9 +90,9 @@ defmodule Phxblog.PostController do
     |> halt
   end
 
-  defp authorize_user(conn, _opts) do
+  defp authorize_user(conn, _) do
     user = get_session(conn, :current_user)
-    if user && Integer.to_string(user.id) == conn.params["user_id"] do
+    if user && (Integer.to_string(user.id) == conn.params["user_id"] || Phxblog.RoleChecker.is_admin?(user)) do
       conn
     else
       conn

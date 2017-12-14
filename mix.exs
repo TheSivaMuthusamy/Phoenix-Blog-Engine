@@ -42,7 +42,8 @@ defmodule Phxblog.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
       {:comeonin, "~> 2.3"},
-      {:ex_machina, "~> 1.0"}
+      {:ex_machina, "~> 1.0"},
+      {:earmark, "~> 1.0.1"}
     ]
   end
 

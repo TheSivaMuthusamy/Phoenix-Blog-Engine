@@ -4,6 +4,7 @@ defmodule Phxblog.Factory do
 	alias Phxblog.Role
 	alias Phxblog.User
   alias Phxblog.Post
+  alias Phxblog.Comment
 
 	def role_factory do
 		%Role{
@@ -28,6 +29,15 @@ defmodule Phxblog.Factory do
       title: "Some Post",
       body: "And the body of some post",
       user: build(:user)
+    }
+  end
+
+  def comment_factory do
+    %Comment{
+      author: "Test User",
+      body: "This is a sample comment",
+      approved: false,
+      post: build(:post)
     }
   end
 end

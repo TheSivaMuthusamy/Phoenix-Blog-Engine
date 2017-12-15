@@ -14,5 +14,18 @@
 
 </ul>
 
+<hr>
+
+<div class="comments">
+ <h2>Comments</h2>
+ <%= for comment <- @post.comments do %>
+   <%= render Phxblog.CommentView, "comment.html", comment: comment %>
+ <% end %>
+</div>
+
+<hr>
+
+<%= render Phxblog.CommentView, "form.html", changeset: @comment_changeset, action: post_comment_path(@conn, :create, @post) %>
+
 <span><%= link "Edit", to: user_post_path(@conn, :edit, @user, @post) %></span>
 <span><%= link "Back", to: user_post_path(@conn, :index, @user) %></span>

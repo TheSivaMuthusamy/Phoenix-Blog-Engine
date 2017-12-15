@@ -19,6 +19,9 @@ defmodule Phxblog.Router do
       resources "/posts", PostController
     end
     resources "/sessions", SessionController, only: [:new, :create, :delete]
+    resources "/posts", PostController, only: [] do
+      resources "/comments", CommentController, only: [:create, :delete, :update]
+    end
     get "/", PageController, :index
   end
 
